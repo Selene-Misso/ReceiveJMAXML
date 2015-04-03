@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://xml.kishou.go.jp/jmaxml1/" xmlns:jmx="http://xml.kishou.go.jp/jmaxml1/" xmlns:jmx_add="http://xml.kishou.go.jp/jmaxml1/addition1/">
+<Control>
+<Title>府県気象情報</Title>
+<DateTime>2015-04-02T07:40:19Z</DateTime>
+<Status>通常</Status>
+<EditorialOffice>秋田地方気象台</EditorialOffice>
+<PublishingOffice>秋田地方気象台</PublishingOffice>
+</Control>
+<Head xmlns="http://xml.kishou.go.jp/jmaxml1/informationBasis1/">
+<Title>暴風と大雨及び融雪に関する秋田県気象情報</Title>
+<ReportDateTime>2015-04-02T16:40:00+09:00</ReportDateTime>
+<TargetDateTime>2015-04-02T16:40:00+09:00</TargetDateTime>
+<EventID>JPDB150010</EventID>
+<InfoType>発表</InfoType>
+<Serial>1</Serial>
+<InfoKind>同一現象用平文情報</InfoKind>
+<InfoKindVersion>1.0_0</InfoKindVersion>
+<Headline>
+<Text>秋田県の海上では、３日昼前から夕方にかけて南よりの風が強く、しけるでしょう。暴風に警戒し、高波に注意してください。また秋田県では、３日は大雨となる所があり、雪解けが進む見込みです。土砂災害や低い土地の浸水、河川の増水に注意してください。</Text>
+</Headline>
+</Head>
+<Body xmlns="http://xml.kishou.go.jp/jmaxml1/body/meteorology1/">
+<Notice/>
+<Comment>
+<Text type="本文">【気象状況】
+３日は、低気圧が発達しながら日本海を北東へ進む見込みです。
+
+【風・波】
+＜地域・時期・量的予想＞
+秋田県の海上では、３日昼前から夕方にかけて、南よりの風が強く、しける
+見込みです。
+
+３日に予想される最大風速（最大瞬間風速）は
+　沿岸の海上　１８メートル（３０メートル）
+　沿岸の陸上　１５メートル（３０メートル）
+　内陸　　　　１２メートル（２５メートル）
+
+３日に予想される波の高さは、４メートル　です。
+
+＜防災事項＞
+海上では暴風に警戒し、高波に注意してください。また、沿岸の陸上と内陸
+でも、強風に注意してください。
+
+【雨・融雪】
+＜地域・時期・量的予想＞
+秋田県では、３日は１時間に３０ミリの激しい雨が降り、大雨となる所があ
+る見込みです。また、気温も高いため、積雪の多い地域では雪解けが進むで
+しょう。
+
+３日１８時までに予想される２４時間雨量は
+　多い所で　７０ミリ　です。
+
+＜防災事項＞
+土砂災害や低い土地の浸水、河川の増水に注意してください。また、積雪の
+多い傾斜地では、なだれにも注意が必要です。
+
+【補足事項】
+今後、気象台が発表する警報・注意報・気象情報に留意してください。
+次の秋田県気象情報は、３日０６時３０分頃に発表する予定です。</Text>
+</Comment>
+</Body>
+</Report>

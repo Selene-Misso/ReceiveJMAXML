@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://xml.kishou.go.jp/jmaxml1/" xmlns:jmx="http://xml.kishou.go.jp/jmaxml1/" xmlns:jmx_add="http://xml.kishou.go.jp/jmaxml1/addition1/">
+<Control>
+<Title>府県気象情報</Title>
+<DateTime>2015-04-02T07:15:25Z</DateTime>
+<Status>通常</Status>
+<EditorialOffice>室蘭地方気象台</EditorialOffice>
+<PublishingOffice>室蘭地方気象台</PublishingOffice>
+</Control>
+<Head xmlns="http://xml.kishou.go.jp/jmaxml1/informationBasis1/">
+<Title>大雨と融雪及び強風に関する胆振・日高地方気象情報</Title>
+<ReportDateTime>2015-04-02T16:15:00+09:00</ReportDateTime>
+<TargetDateTime>2015-04-02T16:15:00+09:00</TargetDateTime>
+<EventID>JPSE150005</EventID>
+<InfoType>発表</InfoType>
+<Serial>1</Serial>
+<InfoKind>同一現象用平文情報</InfoKind>
+<InfoKindVersion>1.0_0</InfoKindVersion>
+<Headline>
+<Text>胆振・日高地方では、３日朝から激しい雨が降り雪解けが進むでしょう。大雨や融雪による低い土地の浸水や土砂災害、雪の多い傾斜地でのなだれ、強風、高波に注意してください。</Text>
+</Headline>
+</Head>
+<Body xmlns="http://xml.kishou.go.jp/jmaxml1/body/meteorology1/">
+<Notice/>
+<Comment>
+<Text type="本文">＜概況＞
+　前線を伴った低気圧が発達しながら３日に日本海西部から北東に進み、夜
+には北海道付近を通過する見込みです。
+
+＜防災事項＞
+　胆振・日高地方では、３日朝から夕方まで雷を伴った激しい雨が降り、積
+雪の多いところでは雪解けが進むでしょう。
+　大雨や融雪による低い土地の浸水や土砂災害、落雷や突風、濃い霧による
+交通障害、積雪の多い傾斜地でのなだれに注意してください。また、４日に
+かけて強風や高波にも注意してください。
+
+＜雨の予想＞
+　２日１８時から３日１８時までの雨量（１時間雨量の最大値）
+　胆振・日高地方　　１２０ミリ　　　（４０ミリ）
+
+　今後、気象台が発表する注意報・警報、気象情報に留意してください。
+
+　次の「胆振・日高地方気象情報」は、３日朝に発表する予定です。</Text>
+</Comment>
+</Body>
+</Report>

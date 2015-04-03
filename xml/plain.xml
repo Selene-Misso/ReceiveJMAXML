@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://xml.kishou.go.jp/jmaxml1/" xmlns:jmx="http://xml.kishou.go.jp/jmaxml1/" xmlns:jmx_add="http://xml.kishou.go.jp/jmaxml1/addition1/">
+<Control>
+<Title>府県天気概況</Title>
+<DateTime>2015-04-02T11:41:04Z</DateTime>
+<Status>通常</Status>
+<EditorialOffice>熊本地方気象台</EditorialOffice>
+<PublishingOffice>熊本地方気象台</PublishingOffice>
+</Control>
+<Head xmlns="http://xml.kishou.go.jp/jmaxml1/informationBasis1/">
+<Title>天気概況</Title>
+<ReportDateTime>2015-04-02T20:41:00+09:00</ReportDateTime>
+<TargetDateTime>2015-04-02T20:41:00+09:00</TargetDateTime>
+<EventID/>
+<InfoType>発表</InfoType>
+<Serial/>
+<InfoKind>平文情報</InfoKind>
+<InfoKindVersion>1.0_0</InfoKindVersion>
+<Headline>
+<Text>天草・芦北地方では３日昼過ぎまで、熊本地方では３日未明から３日昼過ぎまで、強風に注意してください。天草・芦北地方では、３日明け方から３日夕方まで高波に注意してください。</Text>
+</Headline>
+</Head>
+<Body xmlns="http://xml.kishou.go.jp/jmaxml1/body/meteorology1/">
+<TargetArea codeType="気象情報／府県予報区・細分区域等">
+<Name>熊本県</Name>
+<Code>430000</Code>
+</TargetArea>
+<Notice/>
+<Comment>
+<Text type="本文">　九州北部地方は、晴れている所もありますが、湿った空気の影響で概ね曇
+りとなっています。
+
+　熊本県の２日は、気圧の谷や湿った空気の影響により、概ね曇りで雨の降
+る所があるでしょう。
+
+　３日は、前線が朝鮮半島から南下してくるため、はじめは曇りですが、次
+第に雨となり、昼過ぎから雷を伴い激しく降る所があるでしょう。
+
+　波の高さは、外海では２日は２メートル、３日は２メートルのち３メート
+ルでしょう。内海では２日は０．５メートル、３日は１メートルでしょう。
+
+　阿蘇山（中岳）上空およそ１５００メートルの風
+　２日１５時　　　　南の風８メートル
+　３日０９時の予想　南西の風１９メートル
+
+　霧島山（新燃岳）上空およそ１５００メートルの風
+　２日１５時　　　　南の風５メートル
+　３日０９時の予想　南西の風１７メートル</Text>
+</Comment>
+</Body>
+</Report>
