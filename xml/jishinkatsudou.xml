@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://xml.kishou.go.jp/jmaxml1/" xmlns:jmx="http://xml.kishou.go.jp/jmaxml1/">
+<Control>
+<Title>地震の活動状況等に関する情報</Title>
+<DateTime>2015-02-17T06:06:13Z</DateTime>
+<Status>通常</Status>
+<EditorialOffice>気象庁本庁</EditorialOffice>
+<PublishingOffice>気象庁</PublishingOffice>
+</Control>
+<Head xmlns="http://xml.kishou.go.jp/jmaxml1/informationBasis1/">
+<Title>地震の活動状況等に関する情報</Title>
+<ReportDateTime>2015-02-17T15:06:00+09:00</ReportDateTime>
+<TargetDateTime>2015-02-17T15:06:00+09:00</TargetDateTime>
+<EventID>20150217134648</EventID>
+<InfoType>発表</InfoType>
+<Serial></Serial>
+<InfoKind>地震の活動状況等に関する情報</InfoKind>
+<InfoKindVersion>1.0_0</InfoKindVersion>
+<Headline>
+<Text>地震の活動状況等をお知らせします。</Text>
+</Headline>
+</Head>
+<Body xmlns="http://xml.kishou.go.jp/jmaxml1/body/seismology1/" xmlns:jmx_eb="http://xml.kishou.go.jp/jmaxml1/elementBasis1/">
+<Naming english="Ｔｈｅ　２０１１　ｏｆｆ　ｔｈｅ　Ｐａｃｉｆｉｃ　ｃｏａｓｔ　ｏｆ　Ｔｏｈｏｋｕ　Ｅａｒｔｈｑｕａｋｅ">平成２３年（２０１１年）東北地方太平洋沖地震</Naming>
+<Text>「平成２３年（２０１１年）東北地方太平洋沖地震」について（第７５報）
+-平成２７年２月１７日１３時４６分頃の岩手県沖の地震-
+
+１７日１５時００分現在の概要を以下のとおりお知らせします。
+
+＊＊＊　地震の概要　＊＊＊
+発生日時：２月１７日１３時４６分頃
+マグニチュード：５．７（速報値）
+場所および深さ：岩手県沖、深さ約５０ｋｍ（速報値）
+発震機構等：北西-南東方向に圧力軸を持つ逆断層型　（速報）
+※今回の地震は「平成23年（2011年）東北地方太平洋沖地震」の余震と考えられます。
+
+＊＊＊　震度の観測状況　＊＊＊
+【最大震度５強】青森県階上町（はしかみちょう）で震度５強、岩手県普代村（ふだいむら）で震度５弱を観測したほか、東北地方を中心に、北海道から関東地方の一部にかけて震度４から１を観測しました。
+
+＊＊＊　余震活動の状況　＊＊＊
+　１７日１４時４０分現在、震度１以上を観測した余震は２回発生しています。（震度１：２回）
+
+＊＊＊　防災上の留意事項　＊＊＊
+　この地震による津波の心配はありません。揺れの強かった地域では、落石や崖崩れなどの危険性が高まっているおそれがありますので、今後の余震活動や降水の状況に十分注意してください。
+
+＊＊＊　緊急地震速報の発表　＊＊＊
+　この地震に対し、地震検知から３．２秒後に緊急地震速報（予報）を発表しました。なお、緊急地震速報（警報）については、発表基準（最大予測震度が５弱以上）に達しなかったことから発表しておりません。
+　
+
+　地震情報、津波情報等は最新の情報をご覧下さい。
+　なお、現在発表している情報は気象庁ホームページで公表しております。</Text>
+</Body>
+</Report>

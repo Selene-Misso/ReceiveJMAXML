@@ -1,19 +1,22 @@
 require 'rexml/document'
 require 'time'
+require 'nkf'
 
-doc = REXML::Document.new(open("xml/keihou7.xml"))
+doc = REXML::Document.new(open("xml/okiai.xml"))
 
-lines = ""
-if    "府県天気概況" == doc.elements['Report/Control/Title'].text then
-	lines += doc.elements['Report/Control/EditorialOffice'].text + " "
-	time   = Time.parse(doc.elements['Report/Head/ReportDateTime'].text)
-	lines += time.strftime("%Y年%m月%d日 %H時%M分%S秒") + " "
-	lines += doc.elements['Report/Head/InfoType'].text + "\n"
-	lines += ":情報分類: "+doc.elements['Report/Head/InfoKind'].text + "\n"
-	lines += ":情報名称: "+doc.elements['Report/Control/Title'].text + "\n"
-	lines += ":タイトル: "+doc.elements['Report/Head/Title'].text + "\n"
-	lines += ":見出し: \n"
-	lines += doc.elements['Report/Head/Headline/Text'].text + "\n"
+title  = doc.elements['Report/Control/Title'].text
+headtitle = doc.elements['Report/Head/Title'].text
+headline  = doc.elements['Report/Head/Headline/Text'].text
+lines  = doc.elements['Report/Control/EditorialOffice'].text + " "
+time   = Time.parse(doc.elements['Report/Head/ReportDateTime'].text)
+lines += time.strftime("%Y年%m月%d日 %H時%M分%S秒") + " "
+lines += doc.elements['Report/Head/InfoType'].text + "\n"
+lines += ":情報分類: "+doc.elements['Report/Head/InfoKind'].text + "\n"
+lines += ":情報名称: "+title + "\n"
+
+if    "府県天気概況" == title then
+	lines += ":タイトル: #{headtitle}\n"
+	lines += ":見出し: #{headline}\n"
 	lines += ":本文: \n"
 	desc   = doc.elements['Report/Body/Comment/Text'].text
 	desc.each_line do |line|
@@ -30,17 +33,10 @@ if    "府県天気概況" == doc.elements['Report/Control/Title'].text then
 #		end
 		lines += str
 	end
-elsif "府県気象情報" == doc.elements['Report/Control/Title'].text then
-	lines += doc.elements['Report/Control/EditorialOffice'].text + " "
-	time   = Time.parse(doc.elements['Report/Head/ReportDateTime'].text)
-	lines += time.strftime("%Y年%m月%d日 %H時%M分%S秒") + " "
-	lines += doc.elements['Report/Head/InfoType'].text + "\n"
-	lines += ":情報分類: "+doc.elements['Report/Head/InfoKind'].text + "\n"
-	lines += ":情報名称: "+doc.elements['Report/Control/Title'].text + "\n"
-	lines += ":タイトル: "+doc.elements['Report/Head/Title'].text + 
-	         " 第" + doc.elements['Report/Head/Serial'].text + "号\n"
-	lines += ":見出し: \n"
-	lines += doc.elements['Report/Head/Headline/Text'].text + "\n"
+elsif "府県気象情報" == title then
+	lines += ":タイトル: #{headtitle} 第" + 
+		doc.elements['Report/Head/Serial'].text + "号\n"
+	lines += ":見出し: #{headline}\n"
 	lines += ":本文: \n"
 	desc   = doc.elements['Report/Body/Comment/Text'].text
 	desc.each_line do |line|
@@ -54,58 +50,30 @@ elsif "府県気象情報" == doc.elements['Report/Control/Title'].text then
 		end
 		lines += str
 	end
-elsif "竜巻注意情報" == doc.elements['Report/Control/Title'].text then
-	lines += doc.elements['Report/Control/EditorialOffice'].text + " "
-	time   = Time.parse(doc.elements['Report/Head/ReportDateTime'].text)
-	lines += time.strftime("%Y年%m月%d日 %H時%M分%S秒") + " "
-	lines += doc.elements['Report/Head/InfoType'].text + "\n"
-	lines += ":情報分類: "+doc.elements['Report/Head/InfoKind'].text + "\n"
-	lines += ":情報名称: "+doc.elements['Report/Control/Title'].text + "\n"
-	lines += ":タイトル: "+doc.elements['Report/Head/Title'].text + 
-	         " 第" + doc.elements['Report/Head/Serial'].text + "号\n"
-	lines += ":見出し: \n"
-	lines += doc.elements['Report/Head/Headline/Text'].text + "\n"
+elsif "竜巻注意情報" == title then
+	lines += ":タイトル: #{headtitle} 第" + 
+		doc.elements['Report/Head/Serial'].text + "号\n"
+	lines += ":見出し: \n#{headline}\n"
 	lines += ":失効時刻: この情報は、"
 	time   = Time.parse(doc.elements['Report/Head/ValidDateTime'].text)
 	lines += time.strftime("%d日 %H時%M分") + "まで有効です。\n"
-elsif "土砂災害警戒情報" == doc.elements['Report/Control/Title'].text then
-	lines += doc.elements['Report/Control/EditorialOffice'].text + " "
-	time   = Time.parse(doc.elements['Report/Head/ReportDateTime'].text)
-	lines += time.strftime("%Y年%m月%d日 %H時%M分%S秒") + " "
-	lines += doc.elements['Report/Head/InfoType'].text + "\n"
-	lines += ":情報分類: "+doc.elements['Report/Head/InfoKind'].text + "\n"
-	lines += ":情報名称: "+doc.elements['Report/Control/Title'].text + "\n"
-	lines += ":タイトル: "+doc.elements['Report/Head/Title'].text + 
-	         " 第" + doc.elements['Report/Head/Serial'].text + "号\n"
-	lines += ":見出し: \n"
-	lines += doc.elements['Report/Head/Headline/Text'].text + "\n"
-	
+elsif "土砂災害警戒情報" == title then
+	lines += ":タイトル: #{headtitle} 第" + 
+		doc.elements['Report/Head/Serial'].text + "号\n"
+	lines += ":見出し: \n#{headline}\n"
 	doc.elements.each('//Information/Item') do |e|
 		e.elements.each('Kind/Name') {|ee| lines += ":#{ee.text}: " }
 		e.elements.each('Kind/Condition') {|ee| lines += ":#{ee.text}: " }
 		e.elements.each('Areas//Name') {|ee| lines += "#{ee.text} "}
 		lines += "\n"
 	end
-elsif "記録的短時間大雨情報" == doc.elements['Report/Control/Title'].text then
-	lines += doc.elements['Report/Control/EditorialOffice'].text + " "
-	time   = Time.parse(doc.elements['Report/Head/ReportDateTime'].text)
-	lines += time.strftime("%Y年%m月%d日 %H時%M分%S秒") + " "
-	lines += doc.elements['Report/Head/InfoType'].text + "\n"
-	lines += ":情報分類: "+doc.elements['Report/Head/InfoKind'].text + "\n"
-	lines += ":情報名称: "+doc.elements['Report/Control/Title'].text + "\n"
-	lines += ":タイトル: "+doc.elements['Report/Head/Title'].text + 
-	         " 第" + doc.elements['Report/Head/Serial'].text + "号\n"
-	lines += ":見出し: \n"
-	lines += doc.elements['Report/Head/Headline/Text'].text + "\n"
-elsif "府県高温注意情報" == doc.elements['Report/Control/Title'].text then
-	lines += doc.elements['Report/Control/EditorialOffice'].text + " "
-	time   = Time.parse(doc.elements['Report/Head/ReportDateTime'].text)
-	lines += time.strftime("%Y年%m月%d日 %H時%M分%S秒") + " "
-	lines += doc.elements['Report/Head/InfoType'].text + "\n"
-	lines += ":情報分類: "+doc.elements['Report/Head/InfoKind'].text + "\n"
-	lines += ":情報名称: "+doc.elements['Report/Control/Title'].text + "\n"
-	lines += ":タイトル: "+doc.elements['Report/Head/Title'].text + 
-	         " 第" + doc.elements['Report/Head/Serial'].text + "号\n"
+elsif "記録的短時間大雨情報" == title then
+	lines += ":タイトル: #{headtitle} 第" + 
+		doc.elements['Report/Head/Serial'].text + "号\n"
+	lines += ":見出し: #{headline}\n"
+elsif "府県高温注意情報" == title then
+	lines += ":タイトル: #{headtitle} 第" + 
+		doc.elements['Report/Head/Serial'].text + "号\n"
 	lines += ":本文: \n"
 	desc   = doc.elements['Report/Body/Comment/Text'].text
 	desc.each_line do |line|
@@ -119,16 +87,9 @@ elsif "府県高温注意情報" == doc.elements['Report/Control/Title'].text th
 		end
 		lines += str
 	end
-elsif "気象特別警報・警報・注意報" == doc.elements['Report/Control/Title'].text then
-	lines += doc.elements['Report/Control/EditorialOffice'].text + " "
-	time   = Time.parse(doc.elements['Report/Head/ReportDateTime'].text)
-	lines += time.strftime("%Y年%m月%d日 %H時%M分%S秒") + " "
-	lines += doc.elements['Report/Head/InfoType'].text + "\n"
-	lines += ":情報分類: "+doc.elements['Report/Head/InfoKind'].text + "\n"
-	lines += ":情報名称: "+doc.elements['Report/Control/Title'].text + "\n"
-	lines += ":タイトル: "+doc.elements['Report/Head/Title'].text + "\n"
-	lines += ":見出し: \n"
-	lines += doc.elements['Report/Head/Headline/Text'].text + "\n"
+elsif "気象特別警報・警報・注意報" == title then
+	lines += ":タイトル: #{headtitle}\n"
+	lines += ":見出し: #{headline}\n"
 	warn   = ""
 	prevStatus = ""
 	doc.elements.each('//Warning[@type="気象警報・注意報（市町村等）"]/Item') do |e|
@@ -153,6 +114,133 @@ elsif "気象特別警報・警報・注意報" == doc.elements['Report/Control/
 	else
 		lines += warn
 	end
+elsif "震度速報" == title then
+	lines += ":見出し: "
+	lines += NKF.nkf('-m0Z1 -w', headline) + "\n"
+	lines += ":最大震度: "+doc.elements['//Observation/MaxInt'].text + "\n"
+	doc.elements.each('//Information[@type="震度速報"]/Item') do |e|
+		e.elements.each('Kind/Name') {|ee|
+			lines += ":#{NKF.nkf('-m0Z1 -w', ee.text)}: "
+		}
+		e.elements.each('Areas/Area/Name') {|ee| lines += "#{ee.text} "}
+		lines += "\n"
+	end
+	lines += ":固定付加文: "+
+		doc.elements['//ForecastComment[@codeType="固定付加文"]/Text'].text + "\n"
+elsif "震源に関する情報" == title then
+	lines += ":見出し: "
+	lines += NKF.nkf('-m0Z1 -w', headline) + "\n"
+	lines += ":震源: "+doc.elements['//Hypocenter/Area/Name'].text + " "
+	lines += NKF.nkf('-m0Z1 -w',doc.elements['//jmx_eb:Coordinate'].attributes["description"]) + "\n"
+	lines += ":規模: "+doc.elements['//jmx_eb:Magnitude'].attributes["type"] + 
+		doc.elements['//jmx_eb:Magnitude'].text + "\n"
+	lines += ":固定付加文: "+
+		doc.elements['//ForecastComment[@codeType="固定付加文"]/Text'].text + "\n"
+elsif "震源・震度に関する情報" == title then
+	lines += ":見出し: "
+	lines += NKF.nkf('-m0Z1 -w', headline) + "\n"
+	lines += ":震源: "+doc.elements['//Hypocenter/Area/Name'].text + " "
+	lines += NKF.nkf('-m0Z1 -w',doc.elements['//jmx_eb:Coordinate'].attributes["description"]) + "\n"
+	lines += ":規模: "+doc.elements['//jmx_eb:Magnitude'].attributes["type"] + 
+		doc.elements['//jmx_eb:Magnitude'].text + "\n"
+
+	lines += ":最大震度: "+doc.elements['//Observation/MaxInt'].text + "\n"
+	doc.elements.each('//Information[@type="震源・震度に関する情報（市町村等）"]/Item') do |e|
+		e.elements.each('Kind/Name') {|ee|
+			lines += ":#{NKF.nkf('-m0Z1 -w', ee.text)}: "
+		}
+		e.elements.each('Areas/Area/Name') {|ee| lines += "#{ee.text} "}
+		lines += "\n"
+	end
+	lines += ":固定付加文: "+
+		doc.elements['//ForecastComment[@codeType="固定付加文"]/Text'].text + "\n"
+elsif "地震の活動状況等に関する情報" == title then
+	lines += ":見出し: "
+	lines += NKF.nkf('-m0Z1 -w', headline) + "\n"
+	lines += ":名称: #{NKF.nkf('-m0Z1 -w',doc.elements['//Body/Naming'].text)}\n" +
+		NKF.nkf('-m0Z1 -w',doc.elements['//Body/Naming'].attributes["english"]) + "\n"
+	lines += ":本文:\n#{NKF.nkf('-m0Z1 -w',doc.elements['//Body/Text'].text)}\n"
+elsif "津波警報・注意報・予報a" == title then
+	lines += ":タイトル: #{headtitle}\n"
+	lines += ":見出し:   #{NKF.nkf('-m0Z1 -w',headline)}\n"
+	
+	doc.elements.each('//Information/Item') do |e|
+		e.elements.each('Kind/Name') {|ee| lines += ":#{ee.text}: " }
+		e.elements.each('Areas//Name') {|ee| lines += "#{ee.text} "}
+		lines += "\n"
+	end
+	
+	lines += ":固定付加文: \n"+
+		doc.elements['//WarningComment[@codeType="固定付加文"]/Text'].text + "\n"
+	lines += ":震源: "+doc.elements['//Hypocenter/Area/Name'].text + " "
+	lines += NKF.nkf('-m0Z1 -w',doc.elements['//jmx_eb:Coordinate'].attributes["description"]) + "\n"
+	lines += ":規模: "+NKF.nkf('-m0Z1 -w',doc.elements['//jmx_eb:Magnitude'].attributes["description"]) + "\n"
+elsif "津波情報a" == title then
+	lines += ":タイトル: #{headtitle}\n"
+	lines += ":見出し:   #{NKF.nkf('-m0Z1 -w',headline)}\n"
+	
+	doc.elements.each('//Tsunami/Observation/Item') do |e|
+		e.elements.each('Area/Name') {|ee| lines += ":#{ee.text}: "}
+		e.elements.each('Station') {|ee| 
+			ee.elements.each('Name'){|eee| 
+				lines += ":#{eee.text}: "
+				eee.elements.each('../MaxHeight/jmx_eb:TsunamiHeight'){|m|
+					lines += "#{NKF.nkf('-m0Z1 -w',m.attributes['description'])} "
+				}
+				eee.elements.each('../MaxHeight/Condition'){|m|
+					lines += "#{NKF.nkf('-m0Z1 -w',m.text)} "
+				}
+			}
+		}
+		lines += "\n"
+	end
+	
+	lines += ":固定付加文: \n"+
+		doc.elements['//WarningComment[@codeType="固定付加文"]/Text'].text + "\n"
+	lines += ":震源: "+doc.elements['//Hypocenter/Area/Name'].text + " "
+	lines += NKF.nkf('-m0Z1 -w',doc.elements['//jmx_eb:Coordinate'].attributes["description"]) + "\n"
+	lines += ":規模: "+NKF.nkf('-m0Z1 -w',doc.elements['//jmx_eb:Magnitude'].attributes["description"]) + "\n"
+elsif "沖合の津波観測に関する情報" == title then
+	lines += ":タイトル: #{headtitle}\n"
+	lines += ":見出し:   #{headline}\n"
+
+	doc.elements.each('//Tsunami/Observation/Item') do |e|
+		e.elements.each('Station') {|ee| 
+			ee.elements.each('Name'){|eee| 
+				lines += ":#{NKF.nkf('-m0Z1 -w',eee.text)}: "
+				eee.elements.each('../MaxHeight/Condition'){|m|
+					lines += "#{NKF.nkf('-m0Z1 -w',m.text)} "
+				}
+				eee.elements.each('../FirstHeight/ArrivalTime'){|m|
+					arrv = Time.parse(NKF.nkf('-m0Z1 -w',m.text))
+					lines += time.strftime("%H時%M分 ")
+				}
+				eee.elements.each('../Sensor'){|m| 
+					lines += "[#{NKF.nkf('-m0Z1 -w',m.text)}] "
+				}
+			}
+			lines += "\n"
+		}
+	end
+	doc.elements.each('//Tsunami/Estimation/Item') do |e|
+		e.elements.each('Area/Name'){|ee| 
+			lines += ":#{ee.text}: "
+		}
+		e.elements.each('MaxHeight/Condition'){|ee| 
+			lines += "**#{ee.text}** "
+		}
+		e.elements.each('MaxHeight/jmx_eb:TsunamiHeight'){|ee| 
+			lines += ":#{ee.attributes['type']}: [#{ee.attributes['description']}]"
+		}
+		lines += "\n"
+	end
+	
+	lines += ":固定付加文: \n"+
+		doc.elements['//WarningComment[@codeType="固定付加文"]/Text'].text + "\n"
+	lines += ":震源: "+doc.elements['//Hypocenter/Area/Name'].text + " "
+	lines += NKF.nkf('-m0Z1 -w',doc.elements['//jmx_eb:Coordinate'].attributes["description"]) + "\n"
+	lines += ":規模: "+NKF.nkf('-m0Z1 -w',doc.elements['//jmx_eb:Magnitude'].attributes["description"]) + "\n"
+
 end
 
 puts lines

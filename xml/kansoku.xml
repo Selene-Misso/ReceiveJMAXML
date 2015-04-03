@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://xml.kishou.go.jp/jmaxml1/" xmlns:jmx="http://xml.kishou.go.jp/jmaxml1/">
+<Control>
+	<Title>津波情報a</Title>
+	<DateTime>2015-02-16T23:53:26Z</DateTime>
+	<Status>通常</Status>
+	<EditorialOffice>気象庁本庁</EditorialOffice>
+	<PublishingOffice>気象庁</PublishingOffice>
+</Control>
+<Head xmlns="http://xml.kishou.go.jp/jmaxml1/informationBasis1/">
+	<Title>津波観測に関する情報</Title>
+	<ReportDateTime>2015-02-17T08:53:00+09:00</ReportDateTime>
+	<TargetDateTime>2015-02-17T08:50:00+09:00</TargetDateTime>
+	<EventID>20150217080644</EventID>
+	<InfoType>発表</InfoType>
+	<Serial>2</Serial>
+	<InfoKind>津波情報</InfoKind>
+	<InfoKindVersion>1.0_1</InfoKindVersion>
+	<Headline>
+		<Text>１７日０８時５０分現在の、津波の観測値をお知らせします。</Text>
+	</Headline>
+</Head>
+<Body xmlns="http://xml.kishou.go.jp/jmaxml1/body/seismology1/" xmlns:jmx_eb="http://xml.kishou.go.jp/jmaxml1/elementBasis1/">
+	<Tsunami>
+		<Observation>
+			<CodeDefine>
+				<Type xpath="Item/Area/Code">津波予報区</Type>
+				<Type xpath="Item/Station/Code">潮位観測点</Type>
+			</CodeDefine>
+			<Item>
+				<Area><Name>岩手県</Name><Code>210</Code></Area>
+				<Station><Name>宮古</Name><Code>21001</Code>
+					<FirstHeight>
+						<ArrivalTime>2015-02-17T08:41:00+09:00</ArrivalTime>
+						<Initial>押し</Initial>
+					</FirstHeight>
+					<MaxHeight>
+						<DateTime>2015-02-17T08:47:00+09:00</DateTime>
+						<jmx_eb:TsunamiHeight type="これまでの最大波の高さ" unit="m" description="０．１ｍ">0.1</jmx_eb:TsunamiHeight>
+					</MaxHeight>
+				</Station>
+				<Station><Name>釜石</Name><Code>21003</Code>
+					<FirstHeight>
+						<ArrivalTime>2015-02-17T08:35:00+09:00</ArrivalTime>
+						<Initial>押し</Initial>
+					</FirstHeight>
+					<MaxHeight>
+						<DateTime>2015-02-17T08:38:00+09:00</DateTime>
+						<Condition>微弱</Condition>
+					</MaxHeight>
+				</Station>
+			</Item>
+		</Observation>
+		<Forecast>
+			<CodeDefine>
+				<Type xpath="Item/Area/Code">津波予報区</Type>
+				<Type xpath="Item/Category/Kind/Code">警報等情報要素／津波警報・注意報・予報</Type>
+				<Type xpath="Item/Category/LastKind/Code">警報等情報要素／津波警報・注意報・予報</Type>
+				<Type xpath="Item/Station/Code">潮位観測点</Type>
+			</CodeDefine>
+			<Item>
+				<Area><Name>岩手県</Name><Code>210</Code></Area>
+				<Category>
+					<Kind><Name>津波注意報</Name><Code>62</Code></Kind>
+					<LastKind><Name>津波なし</Name><Code>00</Code></LastKind>
+				</Category>
+				<FirstHeight>
+					<Condition>第１波の到達を確認</Condition>
+					<Revise>更新</Revise>
+				</FirstHeight>
+				<MaxHeight>
+					<jmx_eb:TsunamiHeight type="津波の高さ" unit="m" description="１ｍ">1</jmx_eb:TsunamiHeight>
+				</MaxHeight>
+				<Station><Name>宮古</Name><Code>21001</Code>
+					<HighTideDateTime>2015-02-17T13:28:00+09:00</HighTideDateTime>
+					<FirstHeight>
+						<Condition>第１波の到達を確認</Condition>
+						<Revise>更新</Revise>
+					</FirstHeight>
+				</Station>
+				<Station><Name>大船渡</Name><Code>21002</Code>
+					<HighTideDateTime>2015-02-17T13:36:00+09:00</HighTideDateTime>
+					<FirstHeight>
+						<Condition>津波到達中と推測</Condition>
+						<Revise>更新</Revise>
+					</FirstHeight>
+				</Station>
+				<Station><Name>釜石</Name><Code>21003</Code>
+					<HighTideDateTime>2015-02-17T13:36:00+09:00</HighTideDateTime>
+					<FirstHeight>
+						<Condition>第１波の到達を確認</Condition>
+						<Revise>更新</Revise>
+					</FirstHeight>
+				</Station>
+				<Station><Name>久慈港</Name><Code>21020</Code>
+					<HighTideDateTime>2015-02-17T13:23:00+09:00</HighTideDateTime>
+					<FirstHeight>
+						<Condition>津波到達中と推測</Condition>
+						<Revise>更新</Revise>
+					</FirstHeight>
+				</Station>
+			</Item>
+			<Item>
+				<Area><Name>北海道太平洋沿岸東部</Name><Code>100</Code></Area>
+				<Category>
+					<Kind><Name>津波予報（若干の海面変動）</Name><Code>71</Code></Kind>
+					<LastKind><Name>津波なし</Name><Code>00</Code></LastKind>
+				</Category>
+				<MaxHeight>
+					<jmx_eb:TsunamiHeight type="津波の高さ" unit="m" description="０．２ｍ未満">0.2</jmx_eb:TsunamiHeight>
+				</MaxHeight>
+			</Item>
+			<Item>
+				<Area><Name>北海道太平洋沿岸中部</Name><Code>101</Code></Area>
+				<Category>
+					<Kind><Name>津波予報（若干の海面変動）</Name><Code>71</Code></Kind>
+					<LastKind><Name>津波なし</Name><Code>00</Code></LastKind>
+				</Category>
+				<MaxHeight>
+					<jmx_eb:TsunamiHeight type="津波の高さ" unit="m" description="０．２ｍ未満">0.2</jmx_eb:TsunamiHeight>
+				</MaxHeight>
+			</Item>
+			<Item>
+				<Area><Name>北海道太平洋沿岸西部</Name><Code>102</Code></Area>
+				<Category>
+					<Kind><Name>津波予報（若干の海面変動）</Name><Code>71</Code></Kind>
+					<LastKind><Name>津波なし</Name><Code>00</Code></LastKind>
+				</Category>
+				<MaxHeight>
+					<jmx_eb:TsunamiHeight type="津波の高さ" unit="m" description="０．２ｍ未満">0.2</jmx_eb:TsunamiHeight>
+				</MaxHeight>
+			</Item>
+			<Item>
+				<Area><Name>青森県太平洋沿岸</Name><Code>201</Code></Area>
+				<Category>
+					<Kind><Name>津波予報（若干の海面変動）</Name><Code>71</Code></Kind>
+					<LastKind><Name>津波なし</Name><Code>00</Code></LastKind>
+				</Category>
+				<MaxHeight>
+					<jmx_eb:TsunamiHeight type="津波の高さ" unit="m" description="０．２ｍ未満">0.2</jmx_eb:TsunamiHeight>
+				</MaxHeight>
+			</Item>
+			<Item>
+				<Area><Name>宮城県</Name><Code>220</Code></Area>
+				<Category>
+					<Kind><Name>津波予報（若干の海面変動）</Name><Code>71</Code></Kind>
+					<LastKind><Name>津波なし</Name><Code>00</Code></LastKind>
+				</Category>
+				<MaxHeight>
+					<jmx_eb:TsunamiHeight type="津波の高さ" unit="m" description="０．２ｍ未満">0.2</jmx_eb:TsunamiHeight>
+				</MaxHeight>
+			</Item>
+			<Item>
+				<Area><Name>福島県</Name><Code>250</Code></Area>
+				<Category>
+					<Kind><Name>津波予報（若干の海面変動）</Name><Code>71</Code></Kind>
+					<LastKind><Name>津波なし</Name><Code>00</Code></LastKind>
+				</Category>
+				<MaxHeight>
+					<jmx_eb:TsunamiHeight type="津波の高さ" unit="m" description="０．２ｍ未満">0.2</jmx_eb:TsunamiHeight>
+				</MaxHeight>
+			</Item>
+			<Item>
+				<Area><Name>茨城県</Name><Code>300</Code></Area>
+				<Category>
+					<Kind><Name>津波予報（若干の海面変動）</Name><Code>71</Code></Kind>
+					<LastKind><Name>津波なし</Name><Code>00</Code></LastKind>
+				</Category>
+				<MaxHeight>
+					<jmx_eb:TsunamiHeight type="津波の高さ" unit="m" description="０．２ｍ未満">0.2</jmx_eb:TsunamiHeight>
+				</MaxHeight>
+			</Item>
+		</Forecast>
+	</Tsunami>
+	<Earthquake>
+		<OriginTime>2015-02-17T08:06:00+09:00</OriginTime>
+		<ArrivalTime>2015-02-17T08:06:00+09:00</ArrivalTime>
+		<Hypocenter>
+			<Area>
+				<Name>三陸沖</Name>
+				<Code type="震央地名">288</Code>
+				<jmx_eb:Coordinate description="北緯３９．９度　東経１４４．５度　深さ　１０ｋｍ" datum="日本測地系">+39.9+144.5-10000/</jmx_eb:Coordinate>
+				<NameFromMark>宮古の東２１０ｋｍ付近</NameFromMark>
+				<MarkCode type="震央補助">201</MarkCode>
+				<Direction>東</Direction>
+				<Distance unit="km">210</Distance>
+			</Area>
+		</Hypocenter>
+		<jmx_eb:Magnitude type="Mj" description="Ｍ６．９">6.9</jmx_eb:Magnitude>
+	</Earthquake>
+	<Comments>
+		<WarningComment codeType="固定付加文">
+			<Text>津波による潮位変化が観測されてから最大波が観測されるまでに数時間以上かかることがあります。
+　
+場所によっては、観測した津波の高さよりさらに大きな津波が到達しているおそれがあります。
+　
+今後、津波の高さは更に高くなることも考えられます。</Text>
+			<Code>0114 0111 0112</Code>
+		</WarningComment>
+	</Comments>
+</Body>
+</Report>
