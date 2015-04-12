@@ -2,7 +2,7 @@ require 'rexml/document'
 require 'time'
 require 'nkf'
 
-doc = REXML::Document.new(open("xml/okiai.xml"))
+doc = REXML::Document.new(open("xml/jishin.xml"))
 
 title  = doc.elements['Report/Control/Title'].text
 headtitle = doc.elements['Report/Head/Title'].text

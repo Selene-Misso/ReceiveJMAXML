@@ -1,6 +1,7 @@
 require 'websocket-client-simple'
 require 'rexml/document'
 require 'time'
+require 'nkf'
 
 ws = WebSocket::Client::Simple.connect 'ws://cloud1.aitc.jp:443/websocket/WSServlet'
 
