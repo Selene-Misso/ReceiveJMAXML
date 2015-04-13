@@ -2,7 +2,7 @@ require 'rexml/document'
 require 'time'
 require 'nkf'
 
-doc = REXML::Document.new(open("xml/jishin.xml"))
+doc = REXML::Document.new(open("xml/tihou.xml"))
 
 title  = doc.elements['Report/Control/Title'].text
 headtitle = doc.elements['Report/Head/Title'].text
@@ -39,6 +39,23 @@ elsif "府県気象情報" == title then
 	lines += ":見出し: #{headline}\n"
 	lines += ":本文: \n"
 	desc   = doc.elements['Report/Body/Comment/Text'].text
+	desc.each_line do |line|
+		str = ""
+		if line.length == 35 then
+			str = line.strip
+		elsif line.length == 1 then
+			str = "\n"
+		else
+			str = line.strip + "\n"
+		end
+		lines += str
+	end
+elsif "地方気象情報" == title then
+	lines += ":タイトル: #{headtitle} 第" + 
+		doc.elements['Report/Head/Serial'].text + "号\n"
+	lines += ":見出し: #{headline}\n"
+	lines += ":本文: \n"
+	desc   = NKF.nkf('-m0Z1 -w', doc.elements['Report/Body/Comment/Text'].text)
 	desc.each_line do |line|
 		str = ""
 		if line.length == 35 then

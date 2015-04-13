@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://xml.kishou.go.jp/jmaxml1/" xmlns:jmx="http://xml.kishou.go.jp/jmaxml1/" xmlns:jmx_add="http://xml.kishou.go.jp/jmaxml1/addition1/">
+<Control>
+<Title>地方気象情報</Title>
+<DateTime>2015-04-13T06:40:55Z</DateTime>
+<Status>通常</Status>
+<EditorialOffice>福岡管区気象台</EditorialOffice>
+<PublishingOffice>福岡管区気象台</PublishingOffice>
+</Control>
+<Head xmlns="http://xml.kishou.go.jp/jmaxml1/informationBasis1/">
+<Title>落雷と降ひょうに関する九州北部地方（山口県を含む）気象情報</Title>
+<ReportDateTime>2015-04-13T15:40:00+09:00</ReportDateTime>
+<TargetDateTime>2015-04-13T15:40:00+09:00</TargetDateTime>
+<EventID>JPFK150010</EventID>
+<InfoType>発表</InfoType>
+<Serial>1</Serial>
+<InfoKind>同一現象用平文情報</InfoKind>
+<InfoKindVersion>1.0_0</InfoKindVersion>
+<Headline>
+<Text>九州北部地方では、１４日昼過ぎから夜遅くにかけて、落雷や降ひょう、突風、急な強い雨のおそれがあります。農作物や農業施設の管理などに注意してください。</Text>
+</Headline>
+</Head>
+<Body xmlns="http://xml.kishou.go.jp/jmaxml1/body/meteorology1/">
+<Notice/>
+<Comment>
+<Text type="本文">　１４日は、九州北部地方の上空およそ５５００メートルに、氷点下２７度
+以下の強い寒気が流れ込み、大気の状態が非常に不安定となる見込みです。
+　このため九州北部地方では、１４日昼過ぎから夜遅くにかけて、局地的に
+積乱雲が発達し、落雷や降ひょう、突風、急な強い雨のおそれがあります。
+
+＜防災事項＞
+　落雷や降ひょう、突風、急な強い雨に注意してください。
+　農作物、農業施設の管理などに注意してください。
+
+　今後、地元の気象台が発表する注意報や気象情報などに留意してください
+。
+
+　次の「落雷と降ひょうに関する九州北部地方（山口県を含む）気象情報」
+は、１４日０６時００分頃発表の予定です。</Text>
+</Comment>
+</Body>
+</Report>

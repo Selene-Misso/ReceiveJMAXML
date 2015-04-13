@@ -55,6 +55,23 @@ ws.on :message do |msg|
 			end
 			lines += str
 		end
+	elsif "地方気象情報" == title then
+		lines += ":タイトル: #{headtitle} 第" + 
+			doc.elements['Report/Head/Serial'].text + "号\n"
+		lines += ":見出し: #{headline}\n"
+		lines += ":本文: \n"
+		desc   = NKF.nkf('-m0Z1 -w', doc.elements['Report/Body/Comment/Text'].text)
+		desc.each_line do |line|
+			str = ""
+			if line.length == 35 then
+				str = line.strip
+			elsif line.length == 1 then
+				str = "\n"
+			else
+				str = line.strip + "\n"
+			end
+			lines += str
+		end
 	elsif "竜巻注意情報" == title then
 		lines += ":タイトル: #{headtitle} 第" + 
 			doc.elements['Report/Head/Serial'].text + "号\n"
