@@ -43,7 +43,7 @@ ws.on :message do |msg|
 			doc.elements['Report/Head/Serial'].text + "号\n"
 		lines += ":見出し: #{headline}\n"
 		lines += ":本文: \n"
-		desc   = doc.elements['Report/Body/Comment/Text'].text
+		desc   = NKF.nkf('-m0Z1 -w', doc.elements['Report/Body/Comment/Text'].text)
 		desc.each_line do |line|
 			str = ""
 			if line.length == 35 then

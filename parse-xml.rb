@@ -18,7 +18,7 @@ if    "府県天気概況" == title then
 	lines += ":タイトル: #{headtitle}\n"
 	lines += ":見出し: #{headline}\n"
 	lines += ":本文: \n"
-	desc   = doc.elements['Report/Body/Comment/Text'].text
+	desc   = NKF.nkf('-m0Z1 -w', doc.elements['Report/Body/Comment/Text'].text)
 	desc.each_line do |line|
 		str = ""
 		if line.length == 35 then
