@@ -5,11 +5,12 @@ require 'nkf'
 require 'net/http'
 require 'uri'
 require 'json'
+require 'colorize'
 
 ws = WebSocket::Client::Simple.connect 'ws://cloud1.aitc.jp:443/websocket/WSServlet'
 
 # Slackとの通信
-endpoint = URI.parse('https://hooks.slack.com/services/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')
+#endpoint = URI.parse('https://hooks.slack.com/services/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')
 
 ws.on :message do |msg|
 	doc = REXML::Document.new(msg.data)
@@ -21,16 +22,16 @@ ws.on :message do |msg|
 	time   = Time.parse(doc.elements['Report/Head/ReportDateTime'].text)
 	lines += time.strftime("%Y年%m月%d日 %H時%M分%S秒") + " "
 	lines += doc.elements['Report/Head/InfoType'].text + "\n"
-	lines += "[情報分類] "+doc.elements['Report/Head/InfoKind'].text + "\n"
-	lines += "[情報名称] "+title + "\n"
+	lines += "[情報分類] ".yellow+doc.elements['Report/Head/InfoKind'].text + "\n"
+	lines += "[情報名称] ".yellow+title + "\n"
 	tmp    = lines
 
 	if doc.elements['Report/Control/EditorialOffice'].text == "熊本地方気象台" then
 		if "府県気象情報" == title then
-			lines += "[タイトル] #{headtitle} 第" + 
+			lines += "[タイトル] ".yellow + "#{headtitle} 第" + 
 				doc.elements['Report/Head/Serial'].text + "号\n"
-			lines += "[見出し] #{headline}\n"
-			lines += "[本文] \n"
+			lines += "[見出し] ".yellow + "#{headline}\n"
+			lines += "[本文] \n".yellow
 			desc   = NKF.nkf('-m0Z1 -w', doc.elements['Report/Body/Comment/Text'].text)
 			desc.each_line do |line|
 				str = ""
@@ -44,30 +45,30 @@ ws.on :message do |msg|
 				lines += str
 			end
 		elsif "竜巻注意情報" == title then
-			lines += "[タイトル] #{headtitle} 第" + 
+			lines += "[タイトル] ".yellow + "#{headtitle} 第" + 
 				doc.elements['Report/Head/Serial'].text + "号\n"
-			lines += "[見出し] \n#{headline}\n"
-			lines += "[失効時刻] この情報は、"
+			lines += "[見出し] ".yellow + "\n#{headline}\n"
+			lines += "[失効時刻] ".yellow + "この情報は、"
 			time   = Time.parse(doc.elements['Report/Head/ValidDateTime'].text)
 			lines += time.strftime("%d日 %H時%M分") + "まで有効です。\n"
 		elsif "土砂災害警戒情報" == title then
-			lines += "[タイトル] #{headtitle} 第" + 
+			lines += "[タイトル] ".yellow + "#{headtitle} 第" + 
 				doc.elements['Report/Head/Serial'].text + "号\n"
-			lines += "[見出し] \n#{headline}\n"
+			lines += "[見出し] ".yellow + "\n#{headline}\n"
 			doc.elements.each('//Information/Item') do |e|
-				e.elements.each('Kind/Name') {|ee| lines += ":#{ee.text}: " }
-				e.elements.each('Kind/Condition') {|ee| lines += ":#{ee.text}: " }
+				e.elements.each('Kind/Name') {|ee| lines += "[#{ee.text}] ".yellow }
+				e.elements.each('Kind/Condition') {|ee| lines += "[#{ee.text}] ".green }
 				e.elements.each('Areas//Name') {|ee| lines += "#{ee.text} "}
 				lines += "\n"
 			end
 		elsif "記録的短時間大雨情報" == title then
-			lines += "[タイトル] #{headtitle} 第" + 
+			lines += "[タイトル] ".yellow + "#{headtitle} 第" + 
 				doc.elements['Report/Head/Serial'].text + "号\n"
-			lines += "[見出し] #{headline}\n"
+			lines += "[見出し] ".yellow + "#{headline}\n"
 		elsif "府県高温注意情報" == title then
-			lines += "[タイトル] #{headtitle} 第" + 
+			lines += "[タイトル] ".yellow + "#{headtitle} 第" + 
 				doc.elements['Report/Head/Serial'].text + "号\n"
-			lines += "[本文] \n"
+			lines += "[本文] \n".yellow
 			desc   = doc.elements['Report/Body/Comment/Text'].text
 			desc.each_line do |line|
 				str = ""
@@ -81,8 +82,8 @@ ws.on :message do |msg|
 				lines += str
 			end
 		elsif "気象特別警報・警報・注意報" == title then
-			lines += "[タイトル] #{headtitle}\n"
-			lines += "[見出し] #{headline}\n"
+			lines += "[タイトル] ".yellow + "#{headtitle}\n"
+			lines += "[見出し] ".yellow + "#{headline}\n"
 			warn   = ""
 			prevStatus = ""
 			doc.elements.each('//Warning[@type="気象警報・注意報（市町村等）"]/Item') do |e|
@@ -92,7 +93,7 @@ ws.on :message do |msg|
 					e.elements.each('Kind') {|ee|
 						ee.elements.each('Status') {|eee|
 							if prevStatus != eee.text then
-								warn += "[#{eee.text}] "
+								warn += "[#{eee.text}] ".green
 							end
 							prevStatus = eee.text
 						}
@@ -111,14 +112,15 @@ ws.on :message do |msg|
 	end
 	if tmp != lines then
 		puts lines
+		puts "------------------------".yellow
 		# Slackに通知
-		payload = {username: title,text: lines, icon_emoji: ":warning:"}
+#		payload = {username: title,text: lines, icon_emoji: ":warning:"}
 
-		https = Net::HTTP.new(endpoint.host, endpoint.port)
-		https.use_ssl = true
-		req = Net::HTTP::Post.new(endpoint.request_uri)
-		req.body = "payload=" + payload.to_json
-		res = https.request(req)
+#		https = Net::HTTP.new(endpoint.host, endpoint.port)
+#		https.use_ssl = true
+#		req = Net::HTTP::Post.new(endpoint.request_uri)
+#		req.body = "payload=" + payload.to_json
+#		res = https.request(req)
 	end
 end
 
